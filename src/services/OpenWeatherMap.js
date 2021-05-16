@@ -6,7 +6,7 @@ class OpenWeatherMap extends XMLHttpRequest {
     return new Promise(function (resolve, reject) {
       xhr.open(
         "GET",
-        `http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&units=metric&APPID=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&units=metric&APPID=${API_KEY}`
       );
 
       xhr.onreadystatechange = function () {
