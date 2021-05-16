@@ -1,12 +1,25 @@
-import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/HelloWorld.vue";
+import { mount } from "@vue/test-utils";
+import WeatherCard from "@/components/WeatherCard";
 
-describe("HelloWorld.vue", () => {
-  it("renders props.msg when passed", () => {
-    const msg = "new message";
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg },
+describe("weatherComputed Mixin", () => {
+  it("Give a API response and extract icon, description", () => {
+    const wrapper = mount(WeatherCard, {
+      propsData: {
+        weather: [
+          {
+            id: 804,
+            main: "Clouds",
+            description: "overcast clouds",
+            icon: "04n",
+          },
+        ],
+      },
     });
-    expect(wrapper.text()).toMatch(msg);
+
+    expect(wrapper.text()).toContain("overcast clouds");
+
+    expect(wrapper.vm.weatherIcon).toBe(
+      "http://openweathermap.org/img/wn/04n@2x.png"
+    );
   });
 });
